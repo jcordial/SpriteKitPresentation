@@ -19,13 +19,23 @@
 
 		//load the megaman texture
 		SKTextureAtlas* megamanAtlas = [SKTextureAtlas atlasNamed:@"megaman"];
-		NSArray* textureNames = megamanAtlas.textureNames;
+
+		NSString* seriesName = @"teleport_";
+
+		NSArray* textureNames = [megamanAtlas.textureNames sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+			NSNumber* num1 = @([[obj1 stringByReplacingOccurrencesOfString:seriesName withString:@""] integerValue]);
+			NSNumber* num2 = @([[obj2 stringByReplacingOccurrencesOfString:seriesName withString:@""] integerValue]);
+			return [num1 compare:num2];
+
+		}];
+
 		NSMutableArray* teleportTexture = [[NSMutableArray alloc] init];
 		for (int i = 0, max = textureNames.count; i < max; i++) {
 			[teleportTexture addObject:[megamanAtlas textureNamed:textureNames[i]]];
 		}
-		self.teleportFrames = teleportTexture;
 
+		//we need to sort the frames to make sure they end up in the correct order
+		self.teleportFrames = teleportTexture;
 
 		//creat the megaman sprite
 		SKSpriteNode* megaman = [SKSpriteNode spriteNodeWithTexture:teleportTexture[0]];
@@ -33,8 +43,12 @@
 
 		//add the texture animation to make it
 		//look like we're doing something
-		SKAction* teleportAction = [SKAction animateWithTextures:teleportTexture  timePerFrame:1];
+		SKAction* teleportAction = [SKAction animateWithTextures:self.teleportFrames  timePerFrame:0.1 resize:YES restore:NO ];
 		[megaman runAction:teleportAction];
+
+
+		//set the position to the middle of the screen
+		[megaman setPosition:CGPointMake(size.width*0.5, size.height*0.5)];
     }
     return self;
 }
