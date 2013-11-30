@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		815DE6E3184929100096C003 /* CDAtlasLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 815DE6E2184929100096C003 /* CDAtlasLoader.m */; };
 		815DE6E618497E5A0096C003 /* CDMasterScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 815DE6E518497E5A0096C003 /* CDMasterScene.m */; };
+		815DE6E91849A1410096C003 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 815DE6E81849A1410096C003 /* ball.png */; };
 		81A292B91848F25800F0BFEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A292B81848F25800F0BFEC /* Foundation.framework */; };
 		81A292BB1848F25800F0BFEC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A292BA1848F25800F0BFEC /* CoreGraphics.framework */; };
 		81A292BD1848F25800F0BFEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A292BC1848F25800F0BFEC /* UIKit.framework */; };
@@ -27,9 +28,7 @@
 		81A292E41848F25800F0BFEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A292BC1848F25800F0BFEC /* UIKit.framework */; };
 		81A292EC1848F25800F0BFEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81A292EA1848F25800F0BFEC /* InfoPlist.strings */; };
 		81A292EE1848F25800F0BFEC /* MegaManaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A292ED1848F25800F0BFEC /* MegaManaTests.m */; };
-		81A292F918490ED900F0BFEC /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 81A292F718490ED900F0BFEC /* MyParticle.sks */; };
-		81A292FA18490ED900F0BFEC /* bokeh.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A292F818490ED900F0BFEC /* bokeh.png */; };
-		81A292FE1849147400F0BFEC /* load_megaman.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A292FD1849147400F0BFEC /* load_megaman.plist */; };
+		81A292F918490ED900F0BFEC /* frazzle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 81A292F718490ED900F0BFEC /* frazzle.sks */; };
 		81A293001849187F00F0BFEC /* megaman.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81A292FF1849187F00F0BFEC /* megaman.atlas */; };
 		81A293071849240E00F0BFEC /* sprite_loader_megaman.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A293061849240E00F0BFEC /* sprite_loader_megaman.plist */; };
 /* End PBXBuildFile section */
@@ -49,6 +48,7 @@
 		815DE6E2184929100096C003 /* CDAtlasLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAtlasLoader.m; sourceTree = "<group>"; };
 		815DE6E418497E5A0096C003 /* CDMasterScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDMasterScene.h; sourceTree = "<group>"; };
 		815DE6E518497E5A0096C003 /* CDMasterScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDMasterScene.m; sourceTree = "<group>"; };
+		815DE6E81849A1410096C003 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
 		81A292B51848F25800F0BFEC /* MegaMana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MegaMana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81A292B81848F25800F0BFEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		81A292BA1848F25800F0BFEC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -73,9 +73,7 @@
 		81A292E91848F25800F0BFEC /* MegaManaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MegaManaTests-Info.plist"; sourceTree = "<group>"; };
 		81A292EB1848F25800F0BFEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		81A292ED1848F25800F0BFEC /* MegaManaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MegaManaTests.m; sourceTree = "<group>"; };
-		81A292F718490ED900F0BFEC /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
-		81A292F818490ED900F0BFEC /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bokeh.png; sourceTree = "<group>"; };
-		81A292FD1849147400F0BFEC /* load_megaman.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = load_megaman.plist; sourceTree = "<group>"; };
+		81A292F718490ED900F0BFEC /* frazzle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = frazzle.sks; sourceTree = "<group>"; };
 		81A292FF1849187F00F0BFEC /* megaman.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = megaman.atlas; path = sprite_source/megaman/megaman.atlas; sourceTree = SOURCE_ROOT; };
 		81A293061849240E00F0BFEC /* sprite_loader_megaman.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sprite_loader_megaman.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,11 +103,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		815DE6E71849A1410096C003 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				815DE6E81849A1410096C003 /* ball.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		815DE6EA1849A2650096C003 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				815DE6E418497E5A0096C003 /* CDMasterScene.h */,
+				815DE6E518497E5A0096C003 /* CDMasterScene.m */,
+				81A292D51848F25800F0BFEC /* CDMyScene.h */,
+				81A292D61848F25800F0BFEC /* CDMyScene.m */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		815DE6EB1849AB2A0096C003 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				81A292D21848F25800F0BFEC /* CDViewController.h */,
+				81A292D31848F25800F0BFEC /* CDViewController.m */,
+				81A292CC1848F25800F0BFEC /* Main_iPhone.storyboard */,
+				81A292CF1848F25800F0BFEC /* Main_iPad.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		815DE6EC1849AB410096C003 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				81A292C91848F25800F0BFEC /* CDAppDelegate.h */,
+				81A292CA1848F25800F0BFEC /* CDAppDelegate.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
 		81A292AC1848F25800F0BFEC = {
 			isa = PBXGroup;
 			children = (
 				81A292C01848F25800F0BFEC /* MegaMana */,
 				81A292E71848F25800F0BFEC /* MegaManaTests */,
+				815DE6E71849A1410096C003 /* images */,
 				81A292B71848F25800F0BFEC /* Frameworks */,
 				81A292B61848F25800F0BFEC /* Products */,
 			);
@@ -139,22 +177,11 @@
 		81A292C01848F25800F0BFEC /* MegaMana */ = {
 			isa = PBXGroup;
 			children = (
-				81A292C91848F25800F0BFEC /* CDAppDelegate.h */,
-				81A292CA1848F25800F0BFEC /* CDAppDelegate.m */,
-				81A292CC1848F25800F0BFEC /* Main_iPhone.storyboard */,
-				81A292CF1848F25800F0BFEC /* Main_iPad.storyboard */,
-				81A292D21848F25800F0BFEC /* CDViewController.h */,
-				81A292D31848F25800F0BFEC /* CDViewController.m */,
-				815DE6E418497E5A0096C003 /* CDMasterScene.h */,
-				815DE6E518497E5A0096C003 /* CDMasterScene.m */,
-				81A292D51848F25800F0BFEC /* CDMyScene.h */,
-				81A292D61848F25800F0BFEC /* CDMyScene.m */,
+				815DE6EC1849AB410096C003 /* Main */,
+				815DE6EB1849AB2A0096C003 /* UI */,
+				815DE6EA1849A2650096C003 /* Scenes */,
 				81A29304184923A400F0BFEC /* Graphics */,
-				81A292DA1848F25800F0BFEC /* Images.xcassets */,
 				81A292C11848F25800F0BFEC /* Supporting Files */,
-				81A292F718490ED900F0BFEC /* MyParticle.sks */,
-				81A292F818490ED900F0BFEC /* bokeh.png */,
-				81A292FD1849147400F0BFEC /* load_megaman.plist */,
 				81A293081849262A00F0BFEC /* util */,
 			);
 			path = MegaMana;
@@ -192,6 +219,8 @@
 		81A29304184923A400F0BFEC /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				81A292DA1848F25800F0BFEC /* Images.xcassets */,
+				81A292F718490ED900F0BFEC /* frazzle.sks */,
 				81A292D81848F25800F0BFEC /* Spaceship.png */,
 				81A29305184923C500F0BFEC /* Megaman */,
 			);
@@ -294,12 +323,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				81A292D91848F25800F0BFEC /* Spaceship.png in Resources */,
-				81A292FE1849147400F0BFEC /* load_megaman.plist in Resources */,
-				81A292F918490ED900F0BFEC /* MyParticle.sks in Resources */,
+				815DE6E91849A1410096C003 /* ball.png in Resources */,
+				81A292F918490ED900F0BFEC /* frazzle.sks in Resources */,
 				81A293071849240E00F0BFEC /* sprite_loader_megaman.plist in Resources */,
 				81A292DB1848F25800F0BFEC /* Images.xcassets in Resources */,
 				81A292D11848F25800F0BFEC /* Main_iPad.storyboard in Resources */,
-				81A292FA18490ED900F0BFEC /* bokeh.png in Resources */,
 				81A292CE1848F25800F0BFEC /* Main_iPhone.storyboard in Resources */,
 				81A292C51848F25800F0BFEC /* InfoPlist.strings in Resources */,
 				81A293001849187F00F0BFEC /* megaman.atlas in Resources */,

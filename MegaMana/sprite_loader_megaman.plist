@@ -17,6 +17,14 @@
 			<string>walk</string>
 		</dict>
 		<dict>
+			<key>prefix</key>
+			<string>run_gun_</string>
+			<key>number_format</key>
+			<string>%d</string>
+			<key>name</key>
+			<string>run_gun</string>
+		</dict>
+		<dict>
 			<key>name</key>
 			<string>teleport</string>
 			<key>prefix</key>

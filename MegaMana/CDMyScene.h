@@ -12,4 +12,6 @@
 @interface CDMyScene : CDMasterScene
 @property (nonatomic, readwrite) CDAtlasLoader* atlas;
 @property (nonatomic, readwrite) SKSpriteNode* megaman;
+@property (nonatomic, readwrite) SKEmitterNode* frazzle;
+
 @end
