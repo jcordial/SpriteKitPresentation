@@ -15,49 +15,64 @@
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
-        /* Setup your scene here */
+		self.atlas = [[CDAtlasLoader alloc] initWithPlist:@"sprite_loader_megaman"];
 
-		//load the megaman texture
-		SKTextureAtlas* megamanAtlas = [SKTextureAtlas atlasNamed:@"megaman"];
-
-		NSString* seriesName = @"teleport_";
-
-		NSArray* textureNames = [megamanAtlas.textureNames sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-			NSNumber* num1 = @([[obj1 stringByReplacingOccurrencesOfString:seriesName withString:@""] integerValue]);
-			NSNumber* num2 = @([[obj2 stringByReplacingOccurrencesOfString:seriesName withString:@""] integerValue]);
-			return [num1 compare:num2];
-
-		}];
-
-		NSMutableArray* teleportTexture = [[NSMutableArray alloc] init];
-		for (int i = 0, max = textureNames.count; i < max; i++) {
-			[teleportTexture addObject:[megamanAtlas textureNamed:textureNames[i]]];
-		}
-
-		//we need to sort the frames to make sure they end up in the correct order
-		self.teleportFrames = teleportTexture;
+		NSArray* teleportFrames = [self.atlas texturesForAnimation:@"teleport"];
 
 		//creat the megaman sprite
-		SKSpriteNode* megaman = [SKSpriteNode spriteNodeWithTexture:teleportTexture[0]];
-		[self addChild:megaman];
+		self.megaman = [SKSpriteNode spriteNodeWithTexture:teleportFrames[0]];
+
+		[self addChild:self.megaman];
 
 		//add the texture animation to make it
 		//look like we're doing something
-		SKAction* teleportAction = [SKAction animateWithTextures:self.teleportFrames  timePerFrame:0.1 resize:YES restore:NO ];
-		[megaman runAction:teleportAction];
+		SKAction* teleportAction = [SKAction animateWithTextures:teleportFrames  timePerFrame:0.05 resize:YES restore:NO ];
+
 
 
 		//set the position to the middle of the screen
-		[megaman setPosition:CGPointMake(size.width*0.5, size.height*0.5)];
+		[self.megaman setPosition:CGPointMake(size.width*0.5, self.megaman.frame.size.height)];
+
+
+		SKAction* move = [SKAction moveToY:size.height*0.5 duration:0.25];
+
+		SKAction* introAction = [SKAction sequence:@[move,teleportAction,self.startAction]];
+
+		[self.megaman runAction:introAction];
+
+
+
     }
     return self;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    
+
+	UITouch* touch =  [touches anyObject];
+	CGFloat newX = [touch locationInNode:self].x;
+	SKAction* action = [self moveAction:newX];
+
+	if(newX < self.megaman.position.x){
+		self.megaman.xScale = -1;
+	} else {
+		self.megaman.xScale = 1;
+
+	}
+
+	[self.megaman removeActionForKey:@"walk"];
+	[self.megaman runAction:action withKey:@"walk"];
+
+
 }
 
+-(SKAction*) moveAction:(CGFloat)x;
+{
+	SKAction* moveAction = [SKAction moveToX:x duration:1];
+	SKAction* walkAnimationAction = [SKAction animateWithTextures:[self.atlas texturesForAnimation:@"walk"] timePerFrame:0.1 resize:YES restore:YES];
+    SKAction* walkAction = [SKAction group:[NSMutableArray arrayWithObjects:walkAnimationAction, moveAction, nil]];
+	return walkAction;
+}
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 }

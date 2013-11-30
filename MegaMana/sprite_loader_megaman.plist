@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>atlas</key>
+	<string>megaman</string>
+	<key>preload</key>
+	<true/>
+	<key>animations</key>
+	<array>
+		<dict>
+			<key>prefix</key>
+			<string>walk_</string>
+			<key>number_format</key>
+			<string>%d</string>
+			<key>name</key>
+			<string>walk</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>teleport</string>
+			<key>prefix</key>
+			<string>teleport_</string>
+			<key>number_format</key>
+			<string>%i</string>
+		</dict>
+	</array>
+</dict>
+</plist>

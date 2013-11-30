@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 cordial. All rights reserved.
 //
 
-#import <SpriteKit/SpriteKit.h>
 
-@interface CDMyScene : SKScene
-@property(readwrite,nonatomic) NSArray* teleportFrames;
+
+#import "CDMasterScene.h"
+@interface CDMyScene : CDMasterScene
+@property (nonatomic, readwrite) CDAtlasLoader* atlas;
+@property (nonatomic, readwrite) SKSpriteNode* megaman;
 @end

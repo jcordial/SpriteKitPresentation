@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		815DE6E3184929100096C003 /* CDAtlasLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 815DE6E2184929100096C003 /* CDAtlasLoader.m */; };
+		815DE6E618497E5A0096C003 /* CDMasterScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 815DE6E518497E5A0096C003 /* CDMasterScene.m */; };
 		81A292B91848F25800F0BFEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A292B81848F25800F0BFEC /* Foundation.framework */; };
 		81A292BB1848F25800F0BFEC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A292BA1848F25800F0BFEC /* CoreGraphics.framework */; };
 		81A292BD1848F25800F0BFEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A292BC1848F25800F0BFEC /* UIKit.framework */; };
@@ -29,6 +31,7 @@
 		81A292FA18490ED900F0BFEC /* bokeh.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A292F818490ED900F0BFEC /* bokeh.png */; };
 		81A292FE1849147400F0BFEC /* load_megaman.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A292FD1849147400F0BFEC /* load_megaman.plist */; };
 		81A293001849187F00F0BFEC /* megaman.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81A292FF1849187F00F0BFEC /* megaman.atlas */; };
+		81A293071849240E00F0BFEC /* sprite_loader_megaman.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A293061849240E00F0BFEC /* sprite_loader_megaman.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		815DE6E1184929100096C003 /* CDAtlasLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAtlasLoader.h; sourceTree = "<group>"; };
+		815DE6E2184929100096C003 /* CDAtlasLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAtlasLoader.m; sourceTree = "<group>"; };
+		815DE6E418497E5A0096C003 /* CDMasterScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDMasterScene.h; sourceTree = "<group>"; };
+		815DE6E518497E5A0096C003 /* CDMasterScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDMasterScene.m; sourceTree = "<group>"; };
 		81A292B51848F25800F0BFEC /* MegaMana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MegaMana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81A292B81848F25800F0BFEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		81A292BA1848F25800F0BFEC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -70,6 +77,7 @@
 		81A292F818490ED900F0BFEC /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bokeh.png; sourceTree = "<group>"; };
 		81A292FD1849147400F0BFEC /* load_megaman.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = load_megaman.plist; sourceTree = "<group>"; };
 		81A292FF1849187F00F0BFEC /* megaman.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = megaman.atlas; path = sprite_source/megaman/megaman.atlas; sourceTree = SOURCE_ROOT; };
+		81A293061849240E00F0BFEC /* sprite_loader_megaman.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sprite_loader_megaman.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,15 +145,17 @@
 				81A292CF1848F25800F0BFEC /* Main_iPad.storyboard */,
 				81A292D21848F25800F0BFEC /* CDViewController.h */,
 				81A292D31848F25800F0BFEC /* CDViewController.m */,
+				815DE6E418497E5A0096C003 /* CDMasterScene.h */,
+				815DE6E518497E5A0096C003 /* CDMasterScene.m */,
 				81A292D51848F25800F0BFEC /* CDMyScene.h */,
 				81A292D61848F25800F0BFEC /* CDMyScene.m */,
-				81A292D81848F25800F0BFEC /* Spaceship.png */,
-				81A292FF1849187F00F0BFEC /* megaman.atlas */,
+				81A29304184923A400F0BFEC /* Graphics */,
 				81A292DA1848F25800F0BFEC /* Images.xcassets */,
 				81A292C11848F25800F0BFEC /* Supporting Files */,
 				81A292F718490ED900F0BFEC /* MyParticle.sks */,
 				81A292F818490ED900F0BFEC /* bokeh.png */,
 				81A292FD1849147400F0BFEC /* load_megaman.plist */,
+				81A293081849262A00F0BFEC /* util */,
 			);
 			path = MegaMana;
 			sourceTree = "<group>";
@@ -177,6 +187,33 @@
 				81A292EA1848F25800F0BFEC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		81A29304184923A400F0BFEC /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				81A292D81848F25800F0BFEC /* Spaceship.png */,
+				81A29305184923C500F0BFEC /* Megaman */,
+			);
+			name = Graphics;
+			sourceTree = "<group>";
+		};
+		81A29305184923C500F0BFEC /* Megaman */ = {
+			isa = PBXGroup;
+			children = (
+				81A292FF1849187F00F0BFEC /* megaman.atlas */,
+				81A293061849240E00F0BFEC /* sprite_loader_megaman.plist */,
+			);
+			name = Megaman;
+			sourceTree = "<group>";
+		};
+		81A293081849262A00F0BFEC /* util */ = {
+			isa = PBXGroup;
+			children = (
+				815DE6E1184929100096C003 /* CDAtlasLoader.h */,
+				815DE6E2184929100096C003 /* CDAtlasLoader.m */,
+			);
+			name = util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +296,7 @@
 				81A292D91848F25800F0BFEC /* Spaceship.png in Resources */,
 				81A292FE1849147400F0BFEC /* load_megaman.plist in Resources */,
 				81A292F918490ED900F0BFEC /* MyParticle.sks in Resources */,
+				81A293071849240E00F0BFEC /* sprite_loader_megaman.plist in Resources */,
 				81A292DB1848F25800F0BFEC /* Images.xcassets in Resources */,
 				81A292D11848F25800F0BFEC /* Main_iPad.storyboard in Resources */,
 				81A292FA18490ED900F0BFEC /* bokeh.png in Resources */,
@@ -287,6 +325,8 @@
 				81A292D71848F25800F0BFEC /* CDMyScene.m in Sources */,
 				81A292CB1848F25800F0BFEC /* CDAppDelegate.m in Sources */,
 				81A292D41848F25800F0BFEC /* CDViewController.m in Sources */,
+				815DE6E3184929100096C003 /* CDAtlasLoader.m in Sources */,
+				815DE6E618497E5A0096C003 /* CDMasterScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +547,7 @@
 				81A292F31848F25800F0BFEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81A292F41848F25800F0BFEC /* Build configuration list for PBXNativeTarget "MegaManaTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +556,7 @@
 				81A292F61848F25800F0BFEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
