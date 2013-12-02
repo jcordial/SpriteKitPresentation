@@ -17,7 +17,7 @@
     if (self = [super initWithSize:size]) {
 
 		//set up the physical world
-		self.physicsWorld.contactDelegate = self;
+
 
 		self.atlas = [[CDAtlasLoader alloc] initWithPlist:@"sprite_loader_megaman"];
 		NSArray* teleportFrames = [self.atlas texturesForAnimation:@"teleport"];
@@ -45,8 +45,16 @@
 		[self.megaman addChild:self.frazzle];
 		[self.frazzle setHidden:YES];
 
-		//create shootable dummies for MegaMan to []D	[]/\[]	[]\[]
-		[self wallAt:CGPointMake(self.size.width, self.size.height*0.5)];
+		//add boundaries to the world
+		self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:(CGRect){
+			{
+				0,
+				0
+			},
+			self.size}];
+		self.physicsBody.collisionBitMask = bullet_category;
+		self.physicsBody.categoryBitMask = level_category;
+
 
 
     }
@@ -94,11 +102,11 @@
 								self.size.height*0.5);
 	bullet.xScale = self.megaman.xScale;
 
-	pkBody.affectedByGravity = NO;
+	pkBody.affectedByGravity = YES;
 	[pkBody applyForce:CGVectorMake(self.megaman.xScale * 500, 0)];
 
 	pkBody.categoryBitMask = bullet_category;
-	pkBody.collisionBitMask = 0;
+	pkBody.collisionBitMask = level_category;
 	pkBody.contactTestBitMask = enemy_category;
 
 }

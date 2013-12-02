@@ -11,7 +11,8 @@
 #import "CDMasterScene.h"
 typedef enum _Collision_Cats {
 	enemy_category = 0x1,
-	bullet_category = 0x1 << 1
+	bullet_category = 0x1 << 1,
+	level_category = 0x1 << 2
 } CollisionCategories;
 
 @interface CDMyScene : CDMasterScene <SKPhysicsContactDelegate>
