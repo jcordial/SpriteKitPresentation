@@ -17,7 +17,7 @@
     if (self = [super initWithSize:size]) {
 
 		//set up the physical world
-
+		self.physicsWorld.contactDelegate = self;
 
 		self.atlas = [[CDAtlasLoader alloc] initWithPlist:@"sprite_loader_megaman"];
 		NSArray* teleportFrames = [self.atlas texturesForAnimation:@"teleport"];
@@ -46,18 +46,7 @@
 		[self.frazzle setHidden:YES];
 
 		//create shootable dummies for MegaMan to []D	[]/\[]	[]\[]
-		CGAffineTransform trans = CGAffineTransformIdentity;
-		CGRect edgeLoop = CGRectMake(-25, -50, 50, 100);
-		CGPathRef rectPath = CGPathCreateWithRect(edgeLoop, &trans);
-
-
-		SKShapeNode* dummy = [SKShapeNode node];
-		dummy.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:edgeLoop];
-		dummy.path = rectPath;
-		dummy.fillColor = [UIColor yellowColor];
-		dummy.position = CGPointMake(self.size.width, self.size.height*0.5);
-		[self addChild:dummy];
-
+		[self wallAt:CGPointMake(self.size.width, self.size.height*0.5)];
 
 
     }
@@ -108,7 +97,9 @@
 	pkBody.affectedByGravity = NO;
 	[pkBody applyForce:CGVectorMake(self.megaman.xScale * 500, 0)];
 
-
+	pkBody.categoryBitMask = bullet_category;
+	pkBody.collisionBitMask = 0;
+	pkBody.contactTestBitMask = enemy_category;
 
 }
 
@@ -128,11 +119,54 @@
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 }
+-(void)randomWall:(id)sender {
+	CGFloat randX = arc4random_uniform(self.size.width);
+	CGFloat randY = self.size.height*0.5;
+	[self wallAt:CGPointMake(randX, randY)];
+}
+-(void)wallAt:(CGPoint)point{
+	CGAffineTransform trans = CGAffineTransformIdentity;
+	CGRect edgeLoop = CGRectMake(-25, -50, 50, 100);
+	CGPathRef rectPath = CGPathCreateWithRect(edgeLoop, &trans);
 
-#pragma mark - SKPhysicsContactDelegate
--(void)didBeginContact:(SKPhysicsContact *)contact{
+
+	SKShapeNode* dummy = [SKShapeNode node];
+	dummy.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:edgeLoop];
+	dummy.path = rectPath;
+	dummy.fillColor = [UIColor yellowColor];
+	dummy.position = point;
+	dummy.physicsBody.categoryBitMask = enemy_category;
+	dummy.physicsBody.collisionBitMask = bullet_category;
+	[self addChild:dummy];
 
 }
+#pragma mark - SKPhysicsContactDelegate
+-(void)didBeginContact:(SKPhysicsContact *)contact{
+	SKNode* enemy,*bullet;
+
+    if ((contact.bodyA.categoryBitMask & enemy_category ) != 0){
+		//we have a bullet for a
+		enemy = contact.bodyA.node;
+		bullet = contact.bodyB.node;
+	} else {
+		enemy = contact.bodyB.node;
+		bullet = contact.bodyA.node;
+	}
+
+	//kill action
+	SKAction* killAction = [SKAction sequence: @[
+												[SKAction fadeAlphaTo:0 duration:0.15],
+												[SKAction runBlock:^{
+													[enemy removeFromParent];
+													[self randomWall:nil];
+												}]
+												]
+							];
+	[enemy runAction:killAction];
+	enemy.physicsBody = nil;
+	[bullet removeFromParent];
+
+  }
 -(void)didEndContact:(SKPhysicsContact *)contact{
 
 }
