@@ -15,13 +15,15 @@
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
-		self.atlas = [[CDAtlasLoader alloc] initWithPlist:@"sprite_loader_megaman"];
 
+		//set up the physical world
+
+
+		self.atlas = [[CDAtlasLoader alloc] initWithPlist:@"sprite_loader_megaman"];
 		NSArray* teleportFrames = [self.atlas texturesForAnimation:@"teleport"];
 
 		//creat the megaman sprite
 		self.megaman = [SKSpriteNode spriteNodeWithTexture:teleportFrames[0]];
-
 		[self addChild:self.megaman];
 
 		//add the texture animation to make it
@@ -29,41 +31,58 @@
 		SKAction* teleportAction = [SKAction animateWithTextures:teleportFrames  timePerFrame:0.05 resize:YES restore:NO ];
 
 		//set the position to the middle of the screen
-		[self.megaman setPosition:CGPointMake(size.width*0.5, self.megaman.frame.size.height)];
+		[self.megaman setPosition:CGPointMake(size.width*0.5, self.size.height)];
 
-
-		SKAction* move = [SKAction moveToY:size.height*0.5 duration:0.25];
-
+		//play the traditional megaman intro
+		SKAction* move = [SKAction moveToY:size.height*0.5 duration:0.5];
 		SKAction* introAction = [SKAction sequence:@[move,teleportAction,self.startAction]];
-
 		[self.megaman runAction:introAction];
 
 
-		//preload the particle
+		//preload the particle stuff and add it to the scene
 		NSString* pathToEmitter = [[NSBundle mainBundle] pathForResource:@"frazzle" ofType:@"sks"];
 		self.frazzle = [NSKeyedUnarchiver unarchiveObjectWithFile:pathToEmitter];
-
 		[self.megaman addChild:self.frazzle];
-		
 		[self.frazzle setHidden:YES];
+
+		//create shootable dummies for MegaMan to []D	[]/\[]	[]\[]
+		CGAffineTransform trans = CGAffineTransformIdentity;
+		CGRect edgeLoop = CGRectMake(-25, -50, 50, 100);
+		CGPathRef rectPath = CGPathCreateWithRect(edgeLoop, &trans);
+
+
+		SKShapeNode* dummy = [SKShapeNode node];
+		dummy.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:edgeLoop];
+		dummy.path = rectPath;
+		dummy.fillColor = [UIColor yellowColor];
+		dummy.position = CGPointMake(self.size.width, self.size.height*0.5);
+		[self addChild:dummy];
+
+
 
     }
     return self;
 }
--(void)start;
-{
+-(void)didMoveToView:(SKView *)view{
+	UITapGestureRecognizer* shoot  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shoot:)];
+	shoot.numberOfTapsRequired = 2;
 
+	UITapGestureRecognizer* walk = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(go:)];
+	walk.numberOfTapsRequired = 1;
 
-	[super start];
+	[self.view addGestureRecognizer:walk];
+	[self.view addGestureRecognizer:shoot];
 }
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
-
-	UITouch* touch =  [touches anyObject];
-	CGFloat newX = [touch locationInNode:self].x;
+-(void)willMoveFromView:(SKView *)view{
+	UIView* v = self.view;
+	NSArray* gesRecs = v.gestureRecognizers;
+	for (UIGestureRecognizer* rec in gesRecs) {
+		[v  removeGestureRecognizer:rec];
+	}
+}
+-(void)go:(UITapGestureRecognizer *)sender{
+	CGFloat newX = [sender locationInView:self.view].x;
 	SKAction* action = [self moveAction:newX];
-
-
 
 	if(newX < self.megaman.position.x){
 		self.megaman.xScale = -1;
@@ -75,6 +94,22 @@
 	[self.megaman runAction:action withKey:@"walk"];
 	self.frazzle.position = CGPointMake(self.megaman.frame.size.width*0.5, 8);
 	[self.frazzle setHidden:NO];
+}
+-(void)shoot:(UITapGestureRecognizer *)sender{
+	SKSpriteNode* bullet = [SKSpriteNode spriteNodeWithImageNamed:@"bullet.png"];
+	SKPhysicsBody* pkBody = [SKPhysicsBody bodyWithCircleOfRadius:bullet.size.width*0.5];
+	[self addChild:bullet];
+
+	bullet.physicsBody = pkBody;
+	bullet.position = CGPointMake(self.megaman.position.x + (self.megaman.size.width*0.5)*self.megaman.xScale,
+								self.size.height*0.5);
+	bullet.xScale = self.megaman.xScale;
+
+	pkBody.affectedByGravity = NO;
+	[pkBody applyForce:CGVectorMake(self.megaman.xScale * 500, 0)];
+
+
+
 }
 
 -(SKAction*) moveAction:(CGFloat)x;
@@ -94,4 +129,11 @@
     /* Called before each frame is rendered */
 }
 
+#pragma mark - SKPhysicsContactDelegate
+-(void)didBeginContact:(SKPhysicsContact *)contact{
+
+}
+-(void)didEndContact:(SKPhysicsContact *)contact{
+
+}
 @end
