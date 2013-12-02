@@ -78,7 +78,8 @@
 	}
 }
 -(void)go:(UITapGestureRecognizer *)sender{
-	CGFloat newX = [sender locationInView:self.view].x;
+	CGPoint pInV = [sender locationInView:self.view];
+	CGFloat newX = [self convertPointFromView:pInV].x;
 	SKAction* action = [self moveAction:newX];
 
 	if(newX < self.megaman.position.x){
